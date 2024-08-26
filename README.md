@@ -24,7 +24,7 @@ Le développeur est parti, et il nous a été demandé de comprendre ce qui a é
 2. Installer un compilateur Go sur son poste et l'installer 
 3. Pour verifier l'installation du compilateur aller dans le cmd et tapez : **go version**
 4. Ouvrir un *CMD* et aller dans le dossier ou se trouve l'application avec un exemple : **CD /test**
-5. Pour lancer l'application faire **go build** et après taper dans un navigateur localhost:8080
+5. Pour lancer l'application faire **go build** et après taper dans un navigateur http://localhost:8080
 
 Ainsi sur la page web vous pouvez marque votre prénom ou celui de quelqu'un d'autre pour savoir à quel Pokémon vous correspondez 
 
