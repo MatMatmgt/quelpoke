@@ -10,7 +10,7 @@ Le développeur est parti, et il nous a été demandé de comprendre ce qui a é
 
 * Le protocole utilisé est HTTP. Le port par défaut est 8080 (spécifié par PORT dans les variables d'environnement) mais cela peut etre changé 
 
-* Cette application semble proposer un service web qui génère une page HTML (index.tmpl.html) ou le nom de l'utilisateur est demandé en entrée (via un paramètre de requête name). L'application calcule un ID de Pokémon basé sur le nom fourni, récupère des informations sur le Pokémon correspondant depuis une API externe (https://pokeapi.co/api/v2/pokemon/), et affiche ces informations sur la page
+* Cette application propose un service web qui génère une page HTML (index.tmpl.html) ou le nom de l'utilisateur est demandé en entrée (via un paramètre de requête name). L'application calcule un ID de Pokémon basé sur le nom fourni, récupère des informations sur le Pokémon correspondant depuis une API externe (https://pokeapi.co/api/v2/pokemon/), et affiche ces informations sur la page
 
 * L'application dépend du service externe PokéAPI (https://pokeapi.co/) pour récupérer les informations sur les Pokémon en fonction de l'ID calculé. Ainsi que une autre API permettant de recupérer l'image (Sprite)
 
