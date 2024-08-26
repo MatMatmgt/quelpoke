@@ -1,4 +1,5 @@
-From debian  			                            #Librairies debian systeme 
-RUN apt install -y nginx 		                  #Moteur applicatif 
-COPY index.html /var/lib/nginx/html/	        # copie de l'application 
-ENTRYPOINT ["nginx -f"]		                    #Instruction de démarrage 
+FROM debian
+RUN apt update  			                    
+RUN apt install -y nginx 		                  
+COPY index.html /var/lib/nginx/html/	        
+ENTRYPOINT ["nginx", "-g", "daemon off;"]		                    
