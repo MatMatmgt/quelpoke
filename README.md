@@ -6,7 +6,7 @@ Le développeur est parti, et il nous a été demandé de comprendre ce qui a é
 
 ## *Description de l'application / Fonctionnement global*
 
-* Le programme est écrit en Go/HTLM
+* Le programme est écrit en Go/HTML
 
 * Le protocole utilisé est HTTP. Le port par défaut est 8080 (spécifié par PORT dans les variables d'environnement) mais cela peut etre changé 
 
