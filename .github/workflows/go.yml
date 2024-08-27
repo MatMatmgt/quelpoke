@@ -1,0 +1,37 @@
+name: Build and Deploy Docker Image to GCP
+
+on:
+  push:
+    branches:
+      - main  # Déclenche l'action sur les pushs vers la branche main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+    - name: Configure Docker to use the GCP credentials
+      run: |
+        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" | docker login -u _json_key --password-stdin https://${{ secrets.GCR_HOSTNAME }}
+
+    - name: Build the Docker image
+      run: |
+        docker build -t ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA .
+
+    - name: Push the Docker image to GCR
+      run: |
+        docker push ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
+
+    - name: Logout from GCR
+      run: docker logout https://${{ secrets.GCR_HOSTNAME }}
