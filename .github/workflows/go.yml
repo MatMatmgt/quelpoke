@@ -3,7 +3,7 @@ name: Build and Deploy Docker Image to GCP
 on:
   push:
     branches:
-      - main  # Déclenche l'action sur les pushs vers la branche main
+      - MatMatmgt-patch-3  # Déclenche l'action sur les pushs vers la branche main
 
 jobs:
   build:
