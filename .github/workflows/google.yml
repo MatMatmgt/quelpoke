@@ -3,11 +3,7 @@ name: Deploy Namespace to Kubernetes
 on:
   push:
     branches:
-      - MatMatmgt-patch-5  # Déclenchement sur push sur la branche principale
-  pull_request:
-    branches:
-      - main  # Déclenchement sur pull request vers la branche principale
-
+      - MatMatmgt-patch-5  # Déclenchement sur push sur la branche principal
 jobs:
   deploy:
     runs-on: ubuntu-latest
