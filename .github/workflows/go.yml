@@ -28,13 +28,13 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build -t ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA .
-        docker tag ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:latest
+        docker build -t ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/quelpoke:$GITHUB_SHA .
+        docker tag ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/quelpoke:$GITHUB_SHA ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/quelpoke:latest
 
     - name: Check Docker image size
       id: check_size
       run: |
-        IMAGE_SIZE=$(docker image inspect ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA --format='{{.Size}}')
+        IMAGE_SIZE=$(docker image inspect ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/quelpoke:$GITHUB_SHA --format='{{.Size}}')
         IMAGE_SIZE_MB=$(echo "scale=2; $IMAGE_SIZE/1024/1024" | bc)
         echo "Docker image size: $IMAGE_SIZE_MB MB"
         echo "::set-output name=image_size::$IMAGE_SIZE_MB"
@@ -47,7 +47,7 @@ jobs:
     - name: Push the Docker image to GCR
       run: |
         # Pousser l'image avec le tag SHA
-        docker push ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
+        docker push ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/quelpoke:$GITHUB_SHA
 
     - name: Logout from GCR
       run: docker logout https://${{ secrets.GCR_HOSTNAME }}
