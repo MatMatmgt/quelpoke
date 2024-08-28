@@ -20,6 +20,10 @@ jobs:
         service_account_key: ${{ secrets.GCP_KEY_JSON }}  # Clé JSON du compte de service
         export_default_credentials: true
         
+    - name: Authenticate to account 
+      run: |
+        gcloud config set account  ${{ secrets.GKE_ACCOUNT_NAME }}
+        
     - name: Authenticate to GKE
       run: |
         gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER_NAME }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GCP_PROJECT_ID2 }}
