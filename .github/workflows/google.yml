@@ -22,8 +22,8 @@ jobs:
         
     - name: Save Service Account Key to File
       run: |
-        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" | jq . > keyfile.json
-        gcloud auth activate-service-account ${{ secrets.GKE_ACCOUNT_NAME }} --key-file=keyfile.json
+        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > ./keyfile.json
+        gcloud auth activate-service-account ${{ secrets.GKE_ACCOUNT_NAME }} --key-file=./keyfile.json
         
     - name: Authenticate to GKE
       run: |
