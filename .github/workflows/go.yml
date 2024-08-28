@@ -3,7 +3,7 @@ name: Build and Deploy Docker Image to GCP
 on:
   push:
     branches:
-      - MatMatmgt-patch-3  # Déclenche l'action sur les pushs vers la branche main
+      - MatMatmgt-patch-3
 
 jobs:
   build:
@@ -28,9 +28,11 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build -t ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA .
+        docker tag ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:latest
 
     - name: Push the Docker image to GCR
       run: |
+        # Pousser l'image avec le tag SHA
         docker push ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
 
     - name: Logout from GCR
