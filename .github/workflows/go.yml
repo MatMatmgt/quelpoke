@@ -31,8 +31,7 @@ jobs:
         docker tag ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:latest
 
     - name: Push the Docker image to GCR
-      run: |
-        # Pousser l'image avec le tag SHA
+      run: 
         docker push ${{ secrets.GCR_HOSTNAME }}/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
 
     - name: Logout from GCR
