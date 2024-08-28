@@ -1,0 +1,32 @@
+name: Deploy Namespace to Kubernetes
+
+on:
+  push:
+    branches:
+      - MatMatmgt-patch-3  # Déclenchement sur push sur la branche principale
+  pull_request:
+    branches:
+      - main  # Déclenchement sur pull request vers la branche principale
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: 'latest'
+        service_account_key: ${{ secrets.GCP_SA_KEY }}  # Clé JSON du compte de service
+        export_default_credentials: true
+
+    - name: Authenticate to GKE
+      run: |
+        gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER_NAME }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Create Namespace
+      run: |
+        kubectl apply -f namespace.yaml
