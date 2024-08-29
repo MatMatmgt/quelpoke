@@ -1,0 +1,34 @@
+
+name: Deploy Namespace to Kubernetes
+
+on:
+  push:
+    branches:
+      - MatMatmgt-patch-5  # Trigger on push to a specific branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+
+    - name: Use gcloud CLI
+      run: |
+        gcloud components install gke-gcloud-auth-plugin
+      
+    - name: Authenticate to GKE
+      run: |
+        gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER_NAME }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GCP_PROJECT_ID2 }}
+    - name: Create Namespace
+      run: |
+        kubectl apply -f automate.yaml
