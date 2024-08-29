@@ -1,3 +1,4 @@
+
 name: Deploy Namespace to Kubernetes
 
 on:
@@ -12,9 +13,17 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: 'latest'
+        service_account_key: ${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}
+        export_default_credentials: true
         
     - name: Save Service Account Key to File
       run: |
+        echo "${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}" > sa-key.json
         gcloud auth activate-service-account ${{ secrets.GKE_ACCOUNT_NAME }}
         
     - name: Authenticate to GKE
