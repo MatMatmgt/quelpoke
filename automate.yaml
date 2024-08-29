@@ -22,7 +22,7 @@ spec:
       - name: quelpoke-mathys
         image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:$COMMIT_SHA"
         env:
-          - name: VERSION
+        - name: VERSION
             value: "Mathys"
         ports:
          - containerPort: 8080
