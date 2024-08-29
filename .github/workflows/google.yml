@@ -23,7 +23,7 @@ jobs:
         
     - name: Save Service Account Key to File
       run: |
-              echo "${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}" | gcloud auth activate-service-account --key-file=-
+              echo "${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}" | gcloud auth activate-service-account ${{ secrets.GKE_ACCOUNT_NAME }} --key-file=-
               
     - name: Authenticate to GKE
       run: |
