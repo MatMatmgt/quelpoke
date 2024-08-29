@@ -20,7 +20,8 @@ spec:
     spec:
       containers:
       - name: quelpoke-mathys
-        image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:123456789"
+        run: echo "COMMIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
+        image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:COMMIT_SHA"
         env:
           - name: VERSION
             value: "Mathys"
