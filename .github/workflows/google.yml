@@ -13,13 +13,17 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
+      
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
       with:
-        version: 'latest'
-        service_account_key: ${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}
-        export_default_credentials: true
+        credentials_json: '${{ secrets.GKE_SERVICE_ACCOUNT_KEY }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
         
     - name: Authenticate to GKE
       run: |
