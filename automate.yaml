@@ -25,8 +25,8 @@ spec:
           - name: VERSION
             value: "Mathys"
         ports:
-        - containerPort: 8080
-        resources:
+         - containerPort: 8080
+         resources:
           requests:
             cpu: 50m
             memory: 64Mi
