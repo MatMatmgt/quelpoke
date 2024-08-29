@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: quelpoke-mathys
-        image: europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:1724925595
-         env:
+        image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:123456789"
+        env:
           - name: VERSION
             value: "Mathys"
         ports:
