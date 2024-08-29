@@ -12,11 +12,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/robin: quelpoke-mathys
+      app.kubernetes.io/app: quelpoke-mathys
   template:
     metadata:
       labels:
-        app.kubernetes.io/robin: quelpoke-mathys
+        app.kubernetes.io/app: quelpoke-mathys
     spec:
       containers:
       - name: quelpoke-mathys
