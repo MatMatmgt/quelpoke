@@ -20,8 +20,7 @@ spec:
     spec:
       containers:
       - name: quelpoke-mathys
-        run: echo "COMMIT_SHA=${{ github.sha }}" >> $GITHUB_ENV
-        image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:COMMIT_SHA"
+        image: "europe-west9-docker.pkg.dev/infal-devops-sysops/student-mathys/quelpoke:$COMMIT_SHA"
         env:
           - name: VERSION
             value: "Mathys"
@@ -40,7 +39,7 @@ metadata:
     cloud.google.com/neg: '{"exposed_ports": {"80":{"name": "service-mathys"}}}'
 spec:
   selector:
-    app.kubernetes.io/robin: quelpoke-mathys
+    app.kubernetes.io/app: quelpoke-mathys
   ports:
     - name: service-port-8080
       protocol: TCP
